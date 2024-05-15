@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { getServerAuthSession } from "~/server/auth";
 import { HOME } from "~/utils/routes";
 import { AuthButton } from "../_components/Auth";
-import { Avatar, Layout } from "../_components/General";
+import { Avatar, Layout, Subtitle, Title } from "../_components/General";
 
 export const metadata = {
   title: "Seniornicity - Profile",
@@ -21,12 +21,8 @@ export default async function ProfilePage() {
   return (
     <Layout>
       <Avatar />
-      <h1 className="text-2xl font-bold text-center">
-        {session?.user.name}
-      </h1>
-      <h2 className="text-lg font-bold text-center">
-        {session?.user.email}
-      </h2>
+      <Title text={session?.user.name ?? ''} />
+      <Subtitle text={session?.user.email ?? ''} />
       <AuthButton />
     </Layout>
   );

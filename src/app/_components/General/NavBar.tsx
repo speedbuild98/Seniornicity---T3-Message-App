@@ -16,7 +16,7 @@ const navLinks = [
 export default function NavBar() {
   const active = usePathname().split("/")[1];
 
-  if (active === "") {
+  if (active === "" || active !== "chats" && active !== "stats" && active !== "profile") {
     return null;
   }
 

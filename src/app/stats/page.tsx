@@ -4,7 +4,7 @@ import { GiMagicHat } from "react-icons/gi";
 import { getServerAuthSession } from "~/server/auth";
 import { HOME } from "~/utils/routes";
 import { AuthButton } from "../_components/Auth";
-import { Layout } from "../_components/General";
+import { Layout, Title } from "../_components/General";
 
 export const metadata = {
   title: "Seniornicity - Stats",
@@ -22,10 +22,7 @@ export default async function StatsPage() {
   return (
     <Layout>
       <GiMagicHat size={100} />
-      <h1 className="text-4xl font-bold text-center">
-        Stats
-      </h1>
-      {session?.user.name}
+      <Title text='Stats' />
       <AuthButton />
     </Layout>
   );

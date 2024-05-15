@@ -10,7 +10,7 @@ export default async function AuthButton() {
   return (
     <Link
       href={session ? SIGNOUT : SIGNIN}
-      className="btn btn-primary"
+      className="btn btn-primary text-white"
     >
       {session ? 'Sign Out' : 'Sign In'}
       {session ? <CiLogout size={20} /> : <CiLogin size={20} />}
