@@ -1,29 +1,47 @@
-# Create T3 App
+Full Stack Test Project
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+Summary
 
-## What's next? How do I make an app with this?
+Write a simple messaging app that allows users to send and receive messages to and from
+other users. Implement as many of the features listed below as possible within the time allotted.
+Advanced styling is unnecessary. You have until Tuesday, May 21 @ 8:00 am Pacific Time.
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+Stack
+● Use NextJS to create the application.
+● Use whatever database type you would like (Sqlite, Postgres, whatever)
+● Use any other packages, libraries, tools, etc you find useful
+● Build the project to be deployed on Ubuntu
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+Tasks
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+● Develop the app
+● Commit the project to a private Github
+● Include a README file that includes any instructions we need to set up your project, any
+necessary external packages, and anything else that would affect getting your project to
+run on an Ubuntu server
+● Add nicholaswortley@gmail.com “NickWortley” to the private Github account
+● Deliver the project by the Tuesday, May 21 @ 8:00 am Pacific Time
 
-## Learn More
+Requirements
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+The app should include the following features:
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+● Login / Logout
+○ Should be able to save authentication token to skip login after initial login
+● Inbox
+○ List of messages sent and received
+○ Ability to delete individual message
+● Compose
+○ Send message to another user
+● Error messages
+○ Should show an error if any of the requests are invalid
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+Final Notes
 
-## How do I deploy this?
+If you have any questions whatsoever, about anything, please message Nick immediately
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+Email: nick@seniornicity.com
+Phone: 949.478.1270
+
+We will be reviewing your code and looking for best practices, code quality, comments, feature
+completion, bugs, etc
