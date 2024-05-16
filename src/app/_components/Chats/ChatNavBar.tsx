@@ -6,7 +6,7 @@ import { CHATS } from '~/utils/routes'
 
 export default function ChatNavBar() {
   return (
-    <nav className="bg-base-100 w-full px-5 py-2 flex flex-row justify-center items-center relative">
+    <nav className="bg-neutral sticky top-0 w-full px-5 py-2 flex flex-row justify-center items-center z-50">
       <Link href={CHATS} className="btn btn-square btn-sm btn-primary absolute left-5 top-4">
         <FaArrowLeft />
       </Link>
