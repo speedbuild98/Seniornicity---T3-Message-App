@@ -42,7 +42,7 @@ This is a simple messaging app that allows users to send and receive messages to
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPOSITORY_NAME.git](https://github.com/speedbuild98/Seniornicity---T3-Message-App.git
+    git clone https://github.com/speedbuild98/Seniornicity---T3-Message-App.git
     cd Seniornicity---T3-Message-App
     ```
 
