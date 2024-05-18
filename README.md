@@ -1,5 +1,7 @@
 # Full Stack Test Project 
 
+I built this app without tutorials and without reading examples to test my current knowledge as well as to make it more challenging :D
+
 ## Deployment: https://seniornicity-t3-message-app.vercel.app/
 
   <div style="text-align:left;">
