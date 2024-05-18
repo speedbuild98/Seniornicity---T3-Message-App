@@ -11,6 +11,7 @@
 This is a simple messaging app that allows users to send and receive messages to and from other users. The project includes essential features such as login/logout, message inbox, message composition with errors handling.
 
 ## Stack (T3 STACK)
+![My Skills](https://skillicons.dev/icons?i=ts,prisma,react,nextjs,tailwind,supabase,postgresql,vercel)
 - **Frontend**: Typescript/React/Next.js/TailwindCSS
 - **Backend**: tRPC/Prisma/NextAuth
 - **Database**: PostgreSQL
