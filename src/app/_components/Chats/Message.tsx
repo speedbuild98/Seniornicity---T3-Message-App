@@ -1,33 +1,64 @@
 import { type Message } from "@prisma/client";
+import Image from "next/image";
 
 interface MessageProps {
+  setSelectedMessage: (message: Message) => void;
   receiverId: string;
   message: Message & {
     sender: {
       id: string;
       name: string | null;
+      image: string | null;
     };
   };
 }
 
 export default function Message({
+  setSelectedMessage,
   message,
   receiverId,
 }: MessageProps) {
+  const messageIsNotMine = message.sender.id !== receiverId;
 
-  const messageIsMine = message.sender.id !== receiverId;
+  const handleSelectMessage = () => {
+    if (messageIsNotMine) return;
+    setSelectedMessage(message);
+    window.deleteMessageModal.showModal()
+  }
+
 
   return (
-    <div className={`w-1/2 max-w-sm bg-base-100 p-2 rounded-lg relative text-white flex flex-col justify-start items-start ${messageIsMine ? "self-end" : "self-start"}`}>
-      <div className="flex items-center justify-between w-full text-xs text-primary">
-        <p className={`text-sm ${!messageIsMine && "text-secondary"}`}>{message.sender.name?.split(" ")[0]}</p>
-        <p className="text-xs text-gray-500">{new Date(message.createdAt).toLocaleTimeString()}</p>
+    <div className={`chat ${messageIsNotMine ? "chat-start" : "chat-end"}`}>
+      <div className="chat-image avatar">
+        <div className="w-10 rounded-full bg-primary">
+          {message.sender.image ?
+            <Image src={message.sender.image} alt={message.sender.name ?? "user image"} layout="responsive" width={48} height={48} />
+            : (
+              <div className="flex items-center justify-center w-full h-full text-2xl text-white">
+                {message.sender?.name?.charAt(0).toUpperCase() ?? "?"}
+              </div>
+            )
+          }
+        </div>
       </div>
-      {message.content}
-      <div className={`bg-base-100 absolute
-      ${messageIsMine ?
-          "-bottom-1 -right-1 h-4 w-4 rounded-bl-[50px] rounded-tr-[50px]" :
-          "-bottom-1 -left-1 h-4 w-4 rounded-br-[50px] rounded-tl-[50px]"}`}></div>
+      <div className="chat-header">
+        {message.sender?.name?.split(" ")[0]}
+        <time className="text-xs opacity-50 ml-2">
+          {new Date(message.createdAt).toLocaleTimeString()}
+        </time>
+      </div>
+      {messageIsNotMine ?
+        (
+          <div className={`chat-bubble pl-2 ${!messageIsNotMine && "cursor-pointer"}`} onClick={handleSelectMessage}>
+            {message.content}
+          </div>
+        ) : (
+          <div className="tooltip tooltip-top tooltip-warning" data-tip="Delete 🗑️">
+            <div className={`chat-bubble pl-2 ${!messageIsNotMine && "cursor-pointer"}`} onClick={handleSelectMessage}>
+              {message.content}
+            </div>
+          </div>
+        )}
     </div>
   )
 }

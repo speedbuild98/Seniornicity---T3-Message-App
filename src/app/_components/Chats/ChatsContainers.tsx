@@ -5,9 +5,11 @@ import NewChatModal from "./NewChatModal";
 import SearchBar from "./SearchBar";
 import { useState, useEffect } from "react";
 import { type Conversation } from "@prisma/client";
+import DeleteChatModal from "./DeleteChatModal";
 
 export default function ChatsContainers() {
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedChat, setSelectedChat] = useState<Conversation | null>(null);
   const [filteredChats, setFilteredChats] = useState<Conversation[]>([]);
   const { data: chats, isLoading, refetch } = api.chat.getConversations.useQuery();
 
@@ -29,12 +31,13 @@ export default function ChatsContainers() {
     <>
       <SearchBar onSearch={setSearchTerm} />
       <div className="flex flex-col justify-start items-center gap-4 w-full">
+        <DeleteChatModal selectedChat={selectedChat} />
         <NewChatModal />
         {isLoading ?
           (<progress className="progress progress-primary w-56"></progress>) :
           (filteredChats.length === 0 ? <p>No chats found</p> :
             filteredChats.map((chat) => (
-              <ChatCard key={chat.id} chat={chat} />
+              <ChatCard key={chat.id} chat={chat} setSelectedChat={setSelectedChat} />
             ))
           )
         }

@@ -35,7 +35,7 @@ export default function NewChatModal() {
 
   return (
     <>
-      <button className="btn btn-primary" onClick={() => window.newChatModal.showModal()}>New chat<FaPlus /></button>
+      <button className="btn btn-primary text-white" onClick={() => window.newChatModal.showModal()}>New chat<FaPlus /></button>
       <dialog id="newChatModal" className="modal modal-bottom sm:modal-middle">
         <div className="modal-box pt-10 flex flex-col justify-start items-center gap-4">
           <form method="dialog">

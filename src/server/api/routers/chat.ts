@@ -60,7 +60,11 @@ export const chatRouter = createTRPCRouter({
       },
       include: {
         messages: {
-          include: { sender: true },
+          include: {
+            sender: {
+              select: { id: true, name: true, image: true },
+            },
+          },
           orderBy: { createdAt: "desc" },
           take: 1,
         },
@@ -124,9 +128,25 @@ export const chatRouter = createTRPCRouter({
     .input(z.object({ conversationId: z.string() }))
     .mutation(async ({ ctx, input }) => {
       const conversationId = input.conversationId;
-      const conversation = await ctx.db.conversation.delete({
-        where: { id: conversationId },
+
+      const conversation = await ctx.db.$transaction(async (prisma) => {
+        await prisma.message.deleteMany({
+          where: { conversationId },
+        });
+
+        const deletedConversation = await prisma.conversation.delete({
+          where: { id: conversationId },
+        });
+
+        return deletedConversation;
       });
+
+      if (!conversation) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: "Conversation not found",
+        });
+      }
 
       return conversation;
     }),
@@ -138,6 +158,13 @@ export const chatRouter = createTRPCRouter({
       const message = await ctx.db.message.delete({
         where: { id: messageId },
       });
+
+      if (!message) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: "Message not found",
+        });
+      }
 
       return message;
     }),

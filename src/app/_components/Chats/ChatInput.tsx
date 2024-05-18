@@ -32,7 +32,7 @@ export default function ChatInput({ refetch }: ChatInputProps) {
           type="text"
           placeholder="Type a message..."
           autoFocus className="grow max-w-sm input input-bordered h-12" />
-        <button className="btn btn-primary btn-sm w-10 h-10" onClick={sendMessage} disabled={createMessage.isPending || !message}>
+        <button className="btn btn-primary btn-sm w-10 h-10 text-white" onClick={sendMessage} disabled={createMessage.isPending || !message}>
           {createMessage.isPending ?
             <span className="loading loading-spinner loading-lg text-white"></span> : <IoMdSend />}
         </button>

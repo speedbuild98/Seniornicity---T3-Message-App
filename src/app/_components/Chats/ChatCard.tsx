@@ -12,17 +12,22 @@ declare global {
   }
 }
 
-
 interface ChatCardProps {
+  setSelectedChat: (chat: Conversation) => void;
   chat: Conversation & {
     participants: { id: string; name: string; image: string }[];
     messages: { content: string; createdAt: string }[];
   };
 }
 
-export default function ChatCard({ chat }: ChatCardProps) {
+export default function ChatCard({ chat, setSelectedChat }: ChatCardProps) {
 
   if (!chat.participants[0]) return null
+
+  const handleSelectChat = () => {
+    setSelectedChat(chat);
+    window.deleteChatModal.showModal()
+  }
 
   return (
     <div className="flex flex-row justify-center items-center w-full gap-4">
@@ -42,17 +47,16 @@ export default function ChatCard({ chat }: ChatCardProps) {
           </div>
           <div className="flex flex-col items-start justify-start">
             {chat.participants[0] && <h1 className="text-base font-bold">{chat.participants[0]?.name.split(" ")[0]}</h1>}
-            {chat.messages[0] && <p className="text-xs">{chat.messages[0].content}</p>}
+            {chat.messages[0] && <p className="text-xs line-clamp-1">{chat.messages[0].content}</p>}
           </div>
         </div>
         <p className="text-xs">
           {chat.messages[0] && new Date(chat.messages[0].createdAt).toLocaleTimeString()}
         </p>
       </Link>
-      <button className="btn btn-sm btn-square btn-error" onClick={() => window.deleteChatModal.showModal()}><FaTrash /></button>
-      <dialog id="deleteChatModal" className="modal modal-bottom sm:modal-middle">
-        asd
-      </dialog>
+      <button className="btn btn-error btn-sm text-white"
+        onClick={() => handleSelectChat()}
+      ><FaTrash /></button>
     </div>
   )
 }

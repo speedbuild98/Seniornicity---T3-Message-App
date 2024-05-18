@@ -13,7 +13,6 @@ export default function ChatNavBar() {
 
   return (
     isLoading ?
-
       <div className="skeleton bg-neutral sticky top-0 w-full h-16 rounded-none"></div>
 
       :

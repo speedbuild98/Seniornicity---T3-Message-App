@@ -46,6 +46,14 @@ model Session {
     user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+model VerificationToken {
+    identifier String
+    token      String   @unique
+    expires    DateTime
+
+    @@unique([identifier, token])
+}
+
 model User {
     id            String    @id @default(cuid())
     name          String?
@@ -59,21 +67,13 @@ model User {
     messages      Message[]
 }
 
-model VerificationToken {
-    identifier String
-    token      String   @unique
-    expires    DateTime
-
-    @@unique([identifier, token])
-}
-
 model Conversation {
   id        String      @id @default(cuid())
   createdAt DateTime    @default(now())
   updatedAt DateTime    @updatedAt
 
   participants User[]   @relation("ConversationParticipants")
-  messages     Message[]
+  messages     Message[] 
 }
 
 model Message {
