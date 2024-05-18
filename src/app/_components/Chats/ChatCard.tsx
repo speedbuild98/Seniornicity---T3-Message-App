@@ -13,11 +13,11 @@ declare global {
 }
 
 interface ChatCardProps {
-  setSelectedChat: (chat: Conversation) => void;
   chat: Conversation & {
-    participants: { id: string; name: string; image: string }[];
-    messages: { content: string; createdAt: string }[];
+    messages: { content: string; createdAt: Date }[];
+    participants: { id: string; name: string | null; image: string | null }[];
   };
+  setSelectedChat: (chat: Conversation) => void;
 }
 
 export default function ChatCard({ chat, setSelectedChat }: ChatCardProps) {
@@ -46,8 +46,8 @@ export default function ChatCard({ chat, setSelectedChat }: ChatCardProps) {
             </div>
           </div>
           <div className="flex flex-col items-start justify-start">
-            {chat.participants[0] && <h1 className="text-base font-bold">{chat.participants[0]?.name.split(" ")[0]}</h1>}
-            {chat.messages[0] && <p className="text-xs line-clamp-1">{chat.messages[0].content}</p>}
+            {chat.participants[0].name && <h1 className="text-base font-bold">{chat.participants[0].name.split(" ")[0]}</h1>}
+            {chat.messages[0] && <p className="text-xs line-clamp-1 max-w-32">{chat.messages[0].content}</p>}
           </div>
         </div>
         <p className="text-xs">

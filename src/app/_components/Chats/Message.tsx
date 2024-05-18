@@ -18,17 +18,17 @@ export default function Message({
   message,
   receiverId,
 }: MessageProps) {
-  const messageIsNotMine = message.sender.id !== receiverId;
+  const messageIsMine = message.sender.id !== receiverId;
 
   const handleSelectMessage = () => {
-    if (messageIsNotMine) return;
+    if (!messageIsMine) return;
     setSelectedMessage(message);
     window.deleteMessageModal.showModal()
   }
 
 
   return (
-    <div className={`chat ${messageIsNotMine ? "chat-start" : "chat-end"}`}>
+    <div className={`chat ${messageIsMine ? "chat-end" : "chat-start"}`}>
       <div className="chat-image avatar">
         <div className="w-10 rounded-full bg-primary">
           {message.sender.image ?
@@ -47,14 +47,14 @@ export default function Message({
           {new Date(message.createdAt).toLocaleTimeString()}
         </time>
       </div>
-      {messageIsNotMine ?
+      {!messageIsMine ?
         (
-          <div className={`chat-bubble pl-2 ${!messageIsNotMine && "cursor-pointer"}`} onClick={handleSelectMessage}>
+          <div className={`chat-bubble max-w-xs text-wrap break-words pl-2`} onClick={handleSelectMessage}>
             {message.content}
           </div>
         ) : (
-          <div className="tooltip tooltip-top tooltip-warning" data-tip="Delete 🗑️">
-            <div className={`chat-bubble pl-2 ${!messageIsNotMine && "cursor-pointer"}`} onClick={handleSelectMessage}>
+          <div className="tooltip tooltip-top text-wrap break-words tooltip-warning" data-tip="Delete 🗑️">
+            <div className={`chat-bubble max-w-xs pl-2 ${messageIsMine && "cursor-pointer"}`} onClick={handleSelectMessage}>
               {message.content}
             </div>
           </div>

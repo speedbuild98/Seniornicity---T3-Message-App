@@ -19,10 +19,11 @@ export default function ChatInput({ refetch }: ChatInputProps) {
 
   const sendMessage = async () => {
     await createMessage.mutateAsync({ content: message, receiverId: receiverId })
+    window.scrollTo({ top: document.body.scrollHeight + 112, behavior: "smooth" })
   }
 
   return (
-    <div className="w-full fixed bottom-[64px] bg-base-100 max-h-32 flex flex-col justify-start items-start">
+    <div id="chat-input" className="w-full fixed bottom-[64px] bg-base-100 max-h-32 flex flex-col justify-start items-start">
       <label className="flex justify-center items-center gap-2 flex-shrink py-2 px-4 outline-none border-none input active:border-none active:outline-none focus:border-none focus:outline-none focus:ring-0 w-full">
         <input
           disabled={createMessage.isPending}

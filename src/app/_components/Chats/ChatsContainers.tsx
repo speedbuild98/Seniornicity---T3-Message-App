@@ -10,7 +10,11 @@ import DeleteChatModal from "./DeleteChatModal";
 export default function ChatsContainers() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedChat, setSelectedChat] = useState<Conversation | null>(null);
-  const [filteredChats, setFilteredChats] = useState<Conversation[]>([]);
+  const [filteredChats, setFilteredChats] = useState<(Conversation & {
+    messages: { content: string; createdAt: Date }[];
+    participants: { id: string; name: string | null; image: string | null }[];
+  })[]>([]);
+
   const { data: chats, isLoading, refetch } = api.chat.getConversations.useQuery();
 
   useEffect(() => {
@@ -22,9 +26,11 @@ export default function ChatsContainers() {
   }, [refetch]);
 
   useEffect(() => {
-    if (chats) {
-      setFilteredChats(chats.filter((chat) => chat?.participants?.some((participant) => participant?.name?.toLowerCase().includes(searchTerm.toLowerCase()))));
-    }
+    if (!chats) return;
+    setFilteredChats(chats.filter((chat) => {
+      const participant = chat.participants[0];
+      return participant?.name?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false;
+    }));
   }, [chats, searchTerm]);
 
   return (

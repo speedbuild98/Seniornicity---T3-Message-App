@@ -19,7 +19,7 @@ export default function NavBar() {
   }
 
   return (
-    <nav className="btm-nav">
+    <nav className="btm-nav max-w-screen">
       {navLinks.map((link, index) => (
         <Link href={link.href} key={index} className={active === link.label.toLowerCase() ? "active text-primary" : ""}>
           {link.icon}
