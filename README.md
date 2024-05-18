@@ -1,8 +1,11 @@
-# Full Stack Test Project
+# Full Stack Test Project 
 
-![App Screenshot](https://github.com/speedbuild98/Seniornicity---T3-Message-App/blob/main/public/app-pics/Screenshot_1.jpg?raw=true)
+## Deployment: https://seniornicity-t3-message-app.vercel.app/
 
-Deployment: https://seniornicity-t3-message-app.vercel.app/
+  <div style="text-align:left;">
+  <img src="https://github.com/speedbuild98/Seniornicity---T3-Message-App/blob/main/public/app-pics/mobile.gif?raw=true" alt="Login" width="300">
+  <img src="https://github.com/speedbuild98/Seniornicity---T3-Message-App/blob/main/public/app-pics/Screenshot_1.jpg?raw=true" alt="Logout" width="500">
+  </div>
 
 ## Summary
 This is a simple messaging app that allows users to send and receive messages to and from other users. The project includes essential features such as login/logout, message inbox, message composition with errors handling.
